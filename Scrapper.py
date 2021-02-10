@@ -46,8 +46,8 @@ with open('Scrapper_Data.csv', 'w', newline='') as csvfile:
         jobTitle = job.find('h2', class_='title')
         
         if jobFilter != 'A':
-            javaSearch = re.search(jobTypeDict[jobFilter], str(jobTitle))
-            if javaSearch == None:
+            jobTypeSearch = re.search(jobTypeDict[jobFilter], str(jobTitle))
+            if jobTypeSearch == None:
                 continue
         jobCompany = job.find('div', class_='company')
         jobLocation = job.find('div', class_='location')
