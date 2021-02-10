@@ -38,10 +38,10 @@ jobFilter = input("Enter 'A' to search for all jobs or:\nEnter 'J' for Java jobs
 # Open CSV file for input
 with open('Scrapper_Data.csv', 'w', newline='') as csvfile:
     dataWriter = csv.writer(csvfile, delimiter= ',')
-
+    
+    foundTrigger = False
     #Loop through each job entry
     for job in jobs:
-        foundTrigger = False
         # Find HTML element for the Job title, Company, and Location
         jobTitle = job.find('h2', class_='title')
         
