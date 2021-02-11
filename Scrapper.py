@@ -10,18 +10,16 @@ import csv
 jobKeyword = 'Software Engineer'
 jobLocation = 'San Diego'
 
-jobTypeDict = {
-    "J" : r"(?i)(java)\b",
-    "N" : r"(?i)(\.?)(net)\b",
-    "F" : r"(?i)(full)\s?(stack)"
-}
-
-
 # URL Construct
 URL_BASE = 'https://www.monster.com/jobs/search/?q='
 URL_CRITERIA = jobKeyword + '&where=' + jobLocation
 URL = URL_BASE + URL_CRITERIA + '&stpage=1&page=3'
 
+jobTypeDict = {
+    "J" : r"(?i)(java)\b",
+    "N" : r"(?i)(\.?)(net)\b",
+    "F" : r"(?i)(full)\s?(stack)"
+}
 
 # GET Webpage at URL
 page = requests.get(URL)
@@ -51,7 +49,6 @@ with open('Scrapper_Data.csv', 'w', newline='') as csvfile:
                 continue
         jobCompany = job.find('div', class_='company')
         jobLocation = job.find('div', class_='location')
-        jobDesc = str(job.find(id='JobDescription'))
 
         # Check to see if any fields are blank. Causes problems otherwise
         if None in (jobTitle, jobCompany, jobLocation):
