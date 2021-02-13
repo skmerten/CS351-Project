@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import html5lib
 # CSV Library
 import csv
+import Summary
 
 # URL Data
 jobKeyword = 'Software Engineer'
@@ -63,5 +64,8 @@ with open('Scrapper_Data.csv', 'w', newline='') as csvfile:
         dataWriter.writerow([title, company, location])
         foundTrigger = True
         print("Title: " + title + "\nCompany: " + company + "\nLcoation: " + location +"\n\n")
+
+Summary.main()
+
 if (not foundTrigger):
     print('   No jobs found with provided criteria.')

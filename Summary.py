@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+import csv
+
 from random import random
 
 def draw_bar_graph(progLang: np.ndarray,
@@ -42,4 +44,20 @@ def show_summary(progLang: np.ndarray,
     draw_pie_charts(progLang, frequencyArr)
     plt.show()
 
-show_summary(["Java", "C++", "A", "B", "C"], np.array([230, 55, 1,2,3]))
+def main():
+    companyDict = {}
+    with open('Scrapper_Data.csv', newline = '') as csvfile:
+        dataReader = csv.reader(csvfile, delimiter=',')
+        for row in dataReader:
+            if row[1] not in companyDict.keys():
+                companyDict[row[1]] = 1
+            else:
+                companyDict[row[1]] += 1
+    for company in list(companyDict.keys()):
+        if companyDict[company] <= 2:
+            companyDict.pop(company)
+
+    show_summary(list(companyDict.keys()), np.array(list(companyDict.values())))
+
+if __name__ == "__main__":
+    main()
